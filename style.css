@@ -1,0 +1,295 @@
+/*
+  style.css
+  This file provides the styling for the Uni-Docs project.
+  It's designed to mimic the look and feel of the Rust documentation.
+*/
+
+/* 1. Root Variables - for easy theme customization */
+:root {
+    --bg-color: #2d2d2d;
+    --sidebar-bg-color: #1e1e1e;
+    --header-bg-color: #252525;
+    --text-color: #d4d4d4;
+    --link-color: #E6E6FA;
+    --border-color: #444444;
+    --search-bg-color: #3c3c3c;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 2. General Styles */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    font-size: 16px;
+}
+
+/* 3. Main Layout Grid */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content";
+    grid-template-columns: 250px 1fr; /* Sidebar width and content area */
+    grid-template-rows: 50px 1fr;      /* Header height and content area */
+    height: 100vh;
+    transition: grid-template-columns 0.3s ease; /* Smooth transition for sidebar toggle */
+}
+
+/* Hidden sidebar state */
+.container.sidebar-hidden {
+    grid-template-columns: 50px 1fr; /* Collapse sidebar width to a thin strip */
+}
+
+.header {
+    grid-area: header;
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--sidebar-bg-color);
+    border-right: 1px solid var(--border-color);
+    padding: 1rem;
+    padding-top: 0rem;
+    overflow-y: auto;
+    transition: all 0.3s ease; /* Smooth transition for sidebar content */
+    position: relative; /* Needed for absolute positioning of toggle button */
+}
+
+/* Hide sidebar content when collapsed */
+.sidebar.hidden {
+    /* width: 0; Removed as grid-template-columns handles width */
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar.hidden #search-input,
+.sidebar.hidden #module-nav {
+    display: none; /* Hide search and nav when sidebar is collapsed */
+}
+
+
+.content {
+    grid-area: content;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* 4. Component Styles */
+#search-input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--search-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#module-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#module-nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+#module-nav a:hover {
+    text-decoration: underline;
+}
+
+/* 5. Page Content Styles */
+.page-content-wrapper {
+    background-color: var(--header-bg-color);
+    border-radius: 8px;
+    padding: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.page-text {
+    margin-bottom: 2rem;
+}
+
+/* Markdown Specific Styles */
+.page-text h1, .page-text h2, .page-text h3, .page-text h4, .page-text h5, .page-text h6 {
+    color: var(--text-color);
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+}
+
+.page-text h1 { font-size: 2.2em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+.page-text h2 { font-size: 1.8em; }
+.page-text h3 { font-size: 1.5em; }
+.page-text h4 { font-size: 1.2em; }
+
+.page-text p {
+    margin-bottom: 1em;
+}
+
+.page-text ul, .page-text ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+}
+
+.page-text li {
+    margin-bottom: 0.5em;
+}
+
+.page-text code {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+.page-text pre {
+    background-color: #1a1a1a;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 1em;
+}
+
+.page-text pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1em;
+}
+
+/* Styles for tests */
+.tests-container {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.test-question {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.test-option {
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.test-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.test-option.correct {
+    background-color: #28a745; /* Green */
+}
+
+.test-option.incorrect {
+    background-color: #dc3545; /* Red */
+}
+
+.test-explanation {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--link-color);
+}
+
+/* New styles for collapsible modules */
+.module-item .module-pages-list {
+    max-height: 500px; /* Arbitrary large height */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.module-item.collapsed .module-pages-list {
+    max-height: 0;
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.module-header:hover {
+    color: var(--link-color);
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.module-item.collapsed .toggle-icon {
+    transform: rotateX(180deg); /* Rotate arrow for collapsed state */
+}
+
+/* Styles for sidebar header and toggle button */
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end; /* Push toggle to the right */
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.sidebar-toggle {
+    background-color: transparent; /* No background */
+    color: var(--text-color);
+    border: none; /* No border */
+    padding: 0.3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.5em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container.sidebar-hidden .sidebar-toggle .toggle-arrow {
+    transform: rotateX(180deg); /* Rotate arrow when sidebar is hidden */
+}
+
+.buy-me-a-coffee a {
+	display: inline-block;
+	background-color: rgb(255, 221, 0);
+	color: rgb(0, 0, 0);
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: bold;
+	transition: background-color 0.2s;
+}
+
+.container.sidebar-hidden  .buy-me-a-coffee{
+    visibility: hidden;
+     }
