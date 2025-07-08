@@ -14,9 +14,9 @@ This project demonstrates how to:
 ## Features
 
 *   **PDF Text Extraction:** Extracts all text from PDF files.
-*   **AI-Powered Content Generation:** Uses the Google Gemini API to:
-    *   Generate detailed, comprehensive explanations of lecture content in Markdown format.
-    *   Create multiple-choice questions with correct answers and explanations for each processed lecture page.
+*   **AI-Powered Content Generation:** 
+    *   Generates detailed, comprehensive explanations of lecture content in Markdown format.
+    *   Creates multiple-choice questions with correct answers and explanations for each processed lecture page.
 *   **Web-Based Frontend:** A clean, Rust-documentation-inspired interface for viewing processed content, with search and interactive quizzes.
 *   **Incremental Processing:** Processes only new or changed PDF files.
 *   **Reprocessing Option:** Force a full re-processing of all files.
