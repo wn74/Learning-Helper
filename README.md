@@ -21,7 +21,7 @@ This project demonstrates how to:
 *   **Incremental Processing:** Processes only new or changed PDF files.
 *   **Reprocessing Option:** Force a full re-processing of all files.
 
-## A Single Screenshot giving you a rough idea of what processed web page looks like after processing your PDFs
+## A Single Screenshot giving you a rough idea of what the final web page looks like after processing your PDFs
 
 Long presentations will result in longer web pages covering all topics present in the file! :)
 
