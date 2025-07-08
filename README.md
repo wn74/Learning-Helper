@@ -25,8 +25,7 @@ This project demonstrates how to:
 
 Long presentations will result in longer web pages covering all topics present in the file! :)
 
-![Screenshot_20250707_041704](https://github.com/user-attachments/assets/80e4c122-cdc5-47a2-9075-88566f33aa73)
-
+![Screenshot_20250707_041704](https://github.com/user-attachments/assets/97c232e8-8349-44b0-ad82-c43c30d21f45)
 
 ## Setup
 
