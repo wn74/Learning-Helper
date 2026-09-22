@@ -1,4 +1,4 @@
-# Uni-Docs Core: Lecture Notes Processor / Amlify your studying routine
+# Uni-Docs Core: Lecture Notes Processor / Amplify your studying routine
 
 Uni-Docs Core is the backend processing and frontend display engine for transforming your lecture PDFs into an interactive, searchable, and quiz-enhanced learning platform. This repository contains the essential code for processing content and displaying it in a web-based interface, free of personal data, API keys (which you provide locally), and specific UI/GUI wrappers.
 
